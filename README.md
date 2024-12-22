@@ -1,24 +1,46 @@
-# README
+# Stoack Market
+ 
+Ozone is a Ruby on Rails application.
+## How to Create Rails 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- Create Rails project
+``` 
+rails new stock-market-app-with-ruby-on-rails 
+```
 
-Things you may want to cover:
+- Generate the controlloer or web page
+``` 
+rails g controller home index 
+```
 
-* Ruby version
+- Install Bootsrap
+    - Go to https://rubygems.org and add to Gemfile
+    - https://github.com/twbs/bootstrap-rubygem
+## Requirements
 
-* System dependencies
+- Ruby version: specified in [.ruby-version](.ruby-version)
+- Rails version: specified in [Gemfile](Gemfile)
 
-* Configuration
+## Setup
 
-* Database creation
+1. Clone the repository:
+    ```sh
+    git clone <repository-url>
+    cd ozone
+    ```
 
-* Database initialization
+2. Install dependencies:
+    ```sh
+    bundle install
+    ```
 
-* How to run the test suite
+3. Setup the database:
+    ```sh
+    rails db:setup
+    ```
 
-* Services (job queues, cache servers, search engines, etc.)
+## Running the Application
 
-* Deployment instructions
-
-* ...
+To start the application, run:
+```sh
+rails server
