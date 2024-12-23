@@ -18,3 +18,26 @@
 // Import Bootstrap
 @import "bootstrap";
 /* app/assets/stylesheets/application.css */
+
+/* Ensure the html and body elements take up the full height of the viewport */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Wrapper takes up all available space except for the footer */
+.wrapper {
+  flex: 1;
+  /* Fills available vertical space */
+}
+
+/* Footer styling */
+footer {
+  text-align: center;
+  padding: 10px 0;
+  background-color: #f8f9fa;
+  border-top: 1px solid #ddd;
+}

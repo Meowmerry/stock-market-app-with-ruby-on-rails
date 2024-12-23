@@ -2,7 +2,7 @@
 <html>
   <head>
     <title><%= content_for(:title) || "Stock Market App With Ruby On Rails" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
@@ -18,15 +18,23 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "bootstraply", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
-   <%= render "home/navbar" %>
-    <div class="container">
-    <%= yield %>
-    <%# yield will take all code in other file to wrapped in application.html.erf %>
+    <div class="wrapper">
+      <%= render "home/navbar" %>
+      <div class="container mt-4">
+         <%= render 'home/flash', class:'mb-2'%>
+        <%= yield %>
+        <%# yield will take all code in other file to be wrapped in application.html.erb %>
+      </div>
     </div>
+    <%= render "home/footer" %>
+
+    <%# Add the required Bootstrap and jQuery scripts %>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
   </body>
 </html>

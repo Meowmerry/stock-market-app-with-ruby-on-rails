@@ -39,6 +39,8 @@ gem "sassc-rails"
 gem "jquery-rails"
 
 gem "json", "~> 2.9", ">= 2.9.1"
+# gem "stock_quote", "~> 4.0"
+gem "devise", "~> 4.9", ">= 4.9.4"
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
 gem "thruster", require: false

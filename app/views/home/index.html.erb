@@ -1,2 +1,22 @@
 <h1>Stocking</h1>
-<p>Welcome to Stocking project...</p>
+
+<%= form_tag root_path, :method => 'POST' do %>
+	<%= text_field_tag 'ticker', nil, placeholder: "Enter Ticker Symbol", size: 50 %>
+	<%= submit_tag 'Lookup' %>
+<% end %>
+
+
+<br/>
+
+<% if @stock %>
+	<%# <%= @stock.inspect %>
+  <%= @stock['name'] %><br/>
+	$<%= @stock['price'] %><br/>
+  <%= @stock['changesPercentage'] %><br/>
+<% elsif @nothing %>
+	<%= @nothing %>
+<% end %>
+ 
+<% if @error %>
+	<%= @error %>
+<% end %>
