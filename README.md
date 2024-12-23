@@ -8,7 +8,7 @@ Ozone is a Ruby on Rails application.
 rails new stock-market-app-with-ruby-on-rails 
 ```
 
-- Generate the controlloer or web page
+- Generate the controlloer or web page or when you want to create db
 ``` 
 rails g controller home index 
 ```
