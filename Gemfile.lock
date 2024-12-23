@@ -87,9 +87,9 @@ GEM
     bindex (0.8.1)
     bootsnap (1.18.4)
       msgpack (~> 1.2)
-    bootstrap (4.6.2.1)
+    bootstrap (5.3.3)
       autoprefixer-rails (>= 9.1.0)
-      popper_js (>= 1.16.1, < 2)
+      popper_js (>= 2.11.8, < 3)
     brakeman (6.2.2)
       racc
     builder (3.3.0)
@@ -214,7 +214,7 @@ GEM
     parser (3.3.6.0)
       ast (~> 2.4.1)
       racc
-    popper_js (1.16.1)
+    popper_js (2.11.8)
     propshaft (1.1.0)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
@@ -413,7 +413,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
-  bootstrap (~> 4.3)
+  bootstrap (~> 5.3)
   brakeman
   capybara
   debug
