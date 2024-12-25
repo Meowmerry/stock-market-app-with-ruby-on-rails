@@ -1,17 +1,15 @@
 class StocksController < ApplicationController
-  before_action :set_stock, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_stock, only: %i[ show edit update destroy ]
+  # before_action :set_stock, only: [ :show, :edit, :update, :destroy ]
   before_action :correct_user, only: [ :edit, :update, :destroy ]
   before_action :authenticate_user!
 
-  # GET /stocks
-  # GET /stocks.json
+  # GET /stocks or /stocks.json
   def index
-    @api = StockQuote::Stock.new(api_key: "pk_16a849fd637243a79fff90fa4d42bc5d")
     @stocks = Stock.all
   end
 
-  # GET /stocks/1
-  # GET /stocks/1.json
+  # GET /stocks/1 or /stocks/1.json
   def show
   end
 
@@ -24,59 +22,61 @@ class StocksController < ApplicationController
   def edit
   end
 
-  # POST /stocks
-  # POST /stocks.json
+  # POST /stocks or /stocks.json
   def create
     @stock = Stock.new(stock_params)
+    # Check if the user exists
+    @user = User.find_by(id: @stock.user_id)
+    if @user.nil?
+      flash[:error] = "User must exist"
+      render :new and return
+    end
+
 
     respond_to do |format|
       if @stock.save
         format.html { redirect_to @stock, notice: "Stock was successfully created." }
         format.json { render :show, status: :created, location: @stock }
       else
-        format.html { render :new }
+        # Log validation errors
+        Rails.logger.error @stock.errors.full_messages.join(", XXX ")
+        format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @stock.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /stocks/1
-  # PATCH/PUT /stocks/1.json
+  # PATCH/PUT /stocks/1 or /stocks/1.json
   def update
     respond_to do |format|
       if @stock.update(stock_params)
         format.html { redirect_to @stock, notice: "Stock was successfully updated." }
         format.json { render :show, status: :ok, location: @stock }
       else
-        format.html { render :edit }
+        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @stock.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /stocks/1
-  # DELETE /stocks/1.json
+  # DELETE /stocks/1 or /stocks/1.json
   def destroy
-    @stock.destroy
+    @stock.destroy!
+
     respond_to do |format|
-      format.html { redirect_to stocks_url, notice: "Stock was successfully destroyed." }
+      format.html { redirect_to stocks_path, status: :see_other, notice: "Stock was successfully destroyed." }
       format.json { head :no_content }
     end
-  end
-
-  def correct_user
-    @ticker = current_user.stocks.find_by(id: params[:id])
-    redirect_to stocks_path, notice: "Not Authorized to edit this stock" if @ticker.nil?
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_stock
-      @stock = Stock.find(params[:id])
+      @stock = Stock.find(params.expect(:id))
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Only allow a list of trusted parameters through.
     def stock_params
-      params.require(:stock).permit(:ticker, :user_id)
+      params.expect(stock: [ :ticker, :user_id ])
     end
 end
