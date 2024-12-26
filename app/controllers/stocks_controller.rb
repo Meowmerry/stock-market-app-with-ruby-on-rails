@@ -70,6 +70,11 @@ class StocksController < ApplicationController
     end
   end
 
+  def correct_user
+    @ticker = current_user.stocks.find_by(id: params[:id])
+    redirect_to stocks_path, notice: "Not authorized to edit this stock" if @ticker.nil?
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_stock

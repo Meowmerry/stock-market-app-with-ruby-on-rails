@@ -1,27 +1,26 @@
-<%= form_with(model: stock) do |form| %>
+<%= form_with(model: stock, local: true) do |form| %>
   <% if stock.errors.any? %>
-    <div style="color: red">
+    <div id="error_explanation">
       <h2><%= pluralize(stock.errors.count, "error") %> prohibited this stock from being saved:</h2>
 
       <ul>
-        <% stock.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
+      <% stock.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :ticker, style: "display: block" %>
-    <%= form.text_field :ticker %>
+  <div class="field">
+    <%= form.label :ticker %>
+    <%= form.text_field :ticker, id: :stock_ticker %>
   </div>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.number_field :user_id %>
+  <div class="field">
+    <%= form.number_field :user_id, id: :stock_user_id, value: current_user.id, type: :hidden %>
   </div>
 
-  <div>
+  <div class="actions mt-2">
     <%= form.submit %>
   </div>
 <% end %>
