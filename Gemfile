@@ -38,7 +38,7 @@ gem "bootsnap", require: false
 gem "kamal", require: false
 
 # Bootstrap for styling
-gem "bootstrap", "~> 4.3"
+gem "bootstrap", "~> 5.3"
 gem "sassc-rails"
 gem "jquery-rails"
 
