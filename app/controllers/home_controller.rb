@@ -12,6 +12,7 @@ class HomeController < ApplicationController
       @nothing = "Hey! You Forgot To Enter A Symbol"
     else
       begin
+        # https://financialmodelingprep.com/api/v3/quote/AAPL?apikey=TjBA95mM5eWMsdlGrByYgll9ye0IifR8
         # Fetch stock data
         # @url = "https://financialmodelingprep.com/api/v3/quote/#{@ticker}?apikey=#{@api_key}"
         # @uri = URI(@url)

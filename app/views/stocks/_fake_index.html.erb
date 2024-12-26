@@ -1,0 +1,45 @@
+
+<!--
+
+
+<table class="table table-striped table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>Company</th>
+      <th>Ticker</th>
+      <th>Current Price</th>
+      <th>Market Cap</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%# <% logger.debug "Stocks Data: #{@stocks_data.inspect}" %> 
+
+    <% @stocks_data.each do |stock| %>
+      <tr>
+        <% if stock["symbol"].nil? %>
+          <td><%= link_to "Error", '#' %></td>
+          <td><%= stock["symbol"] %></td>
+          <td>N/A</td>
+          <td>N/A</td>
+          
+           <td><center><%= link_to 'Edit', edit_stock_path(stock) %></center></td>
+          <td><center><%= link_to 'Delete', stock, method: :delete, data: { confirm: 'Are you sure?' } %></center></td>
+        <% else %>
+          <td><%= link_to stock["name"], "#" %></td>
+          <td><%= stock["symbol"] %></td>
+          <td>$<%= number_with_precision(stock["price"].to_f, precision: 2, delimiter: ',') %></td>
+          <td><%= stock["exchange"] %></td>
+           <td><center><%= link_to 'Edit' %></center></td>
+          <td><center><%= link_to 'Delete', stock, method: :delete, data: { confirm: 'Are you sure?' } %></center></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Stock', new_stock_path %>
+
+-->
